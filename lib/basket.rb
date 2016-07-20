@@ -1,7 +1,8 @@
 class Basket
 
-  def initialize product_catalogue
+  def initialize product_catalogue, offers
     @product_catalogue = product_catalogue
+    @offers = offers
     @orders = []
   end
 
@@ -10,7 +11,9 @@ class Basket
   end
 
   def total
-    @orders.reduce(0){|total, order| total += order.price}
+    total = 0
+    total += @orders.reduce(0){|total, order| total += order.price}
+    total += @offers.calculate(@orders)
   end
 
 
