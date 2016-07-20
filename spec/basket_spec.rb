@@ -7,7 +7,27 @@ describe Basket do
   let(:product_catalogue) { double :product_catalogue}
   let(:offers)            { double :offers }
   let(:shipping)          { double :shipping }
-  subject(:basket) { Basket.new product_catalogue, offers, shipping}
+  subject(:basket)        { Basket.new product_catalogue, offers, shipping}
+
+  # assumptions
+
+  # Products, ProductCatalogue, Offers and Shipping are all classes worked on by
+  # the rest of the team
+
+  # Products have a code and a price
+
+  # ProductCatalogue has an interface which looks up a product code and returns the
+  # correct product
+
+  # Offers has an interface which takes the current basket and calculates any offers
+  # based on its own implementation
+
+  # Shipping has an interface which takes the total basket value (after offers are
+  # applied) and calulates shippng fee based on its own internal implementation
+
+  # For this test I have ignorred the internal implementations of the other classes
+  # and solely focused on the basket class and its interfaces, stubbing, mocking and
+  # spying on the other classes where neccessary
 
   describe '#add' do
     it 'looks up the product in the product catalogue' do
@@ -17,7 +37,6 @@ describe Basket do
 
       expect(product_catalogue).to have_received(:look_up).with(jeans.code)
     end
-
 
     it 'looked up products are added to the basket' do
       mock_look_up_product jeans
