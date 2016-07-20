@@ -8,7 +8,7 @@ class Basket
   end
 
   def add product_code
-    @orders << @product_catalogue.find { |product| product.code == product_code }
+    @orders << @product_catalogue.look_up(product_code)
   end
 
   def total
@@ -17,6 +17,5 @@ class Basket
     total += @offers.calculate(@orders)
     total += @shipping.calculate(total)
   end
-
 
 end
